@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToMany, JoinTable, ManyToOne } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToMany, JoinTable, ManyToOne, Collection } from "typeorm";
 import { Usuario } from "./Usuario";
 import { Produto } from "./Produto";
 
@@ -16,6 +16,9 @@ export class CarrinhoCompras{
 
     @Column()
     valorTotal: string;
+
+    @Column({default: "Ativo"})
+    status: string; // Controla o status do carrinho
 
     @ManyToOne(() => Usuario, (usuario) => usuario.compras)
     usuario: Usuario;

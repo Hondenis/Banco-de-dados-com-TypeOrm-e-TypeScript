@@ -20,6 +20,9 @@ export class Produto{
     @Column()
     tamanho: number;
 
+    @Column()
+    valorUnitario: string;
+
     @ManyToOne(() => Estoque, (estoque) => estoque.produto)
     estoque: Estoque;
 

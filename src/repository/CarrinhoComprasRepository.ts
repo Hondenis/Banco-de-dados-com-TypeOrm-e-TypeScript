@@ -37,4 +37,11 @@ export class CarrinhoComprasRepository{
     async pesquisarCarrinho(id: number): Promise<CarrinhoCompras | null> {
         return await this.repositorioCarrinhoCompras.findOne( { where: {id}});
     }
+
+    async pesquisarCarrinhoAtivoPorUsuario(usuarioId: number): Promise<CarrinhoCompras | null>{
+        return await this.repositorioCarrinhoCompras.findOne({
+            where: { usuario: { id: usuarioId }, status: "ativo"},
+            relations: ["produto"],
+        })
+    }
 }
