@@ -6,7 +6,7 @@ export class CartaoRepository{
     private repositorioCartao: Repository<Cartao>;
 
     constructor(){
-        this.repositorioCartao = AppDataSource.getMongoRepository(Cartao);
+        this.repositorioCartao = AppDataSource.getRepository(Cartao);
     }
 
     async criarCartao(cartao: Cartao): Promise<Cartao>{
