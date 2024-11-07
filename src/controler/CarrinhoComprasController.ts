@@ -11,8 +11,8 @@ export class CarrinhoComprasController{
 
     async criarCarrinho(req: Request, res: Response): Promise<Response> {
         try {
-            const carrinhoCompras: CarrinhoCompras = req.body;
-            const novoCarrinho = await this.carrinhoService.criarCarrinho(carrinhoCompras);
+            const {usuarioId, produto} = req.body;
+            const novoCarrinho = await this.carrinhoService.criarCarrinho(usuarioId, produto);
             return res.status(201).json({message: "Carrinho criado com sucesso.", novoCarrinho});
         } catch (error) {
             return res.status(400).json({message: "Erro ao criar carrinho.", error: error.message});

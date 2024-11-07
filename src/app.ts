@@ -1,3 +1,4 @@
+import "reflect-metadata";
 import express from 'express';
 import usuarioRouter from "./router/usuario";
 import produtoRouter from "./router/produto";
@@ -10,12 +11,16 @@ import { AppDataSource } from './banco';
 
 const app = express()
 app.use(express.json());
+
+app.get('/test', (req, res) => {
+    res.send('<h1>sistema biblioteca</h1>');
+});
+
 app.use('/usuario', usuarioRouter);
 app.use('/produto', produtoRouter);
 app.use('/estoque', estoqueRouter);
 app.use('/endereco', enderecoRouter);
 app.use('/cartao', cartaoRouter);
-app.use('/carrinho', carrinhoRouter);
 const porta = 3000;
 
 app.listen(porta, async() =>{
