@@ -11,7 +11,6 @@ export class Estoque{
     quantidadeEmEstoque: number;
 
     @OneToMany(() => Produto, (produto) => produto.estoque)
-    @JoinTable()
     produto: Produto[];
 
     constructor(quantidadeEmEstoque?: number){
