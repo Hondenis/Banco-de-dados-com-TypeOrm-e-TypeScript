@@ -21,6 +21,7 @@ app.use('/produto', produtoRouter);
 app.use('/estoque', estoqueRouter);
 app.use('/endereco', enderecoRouter);
 app.use('/cartao', cartaoRouter);
+app.use('/carrinho', carrinhoRouter);
 const porta = 3000;
 
 app.listen(porta, async() =>{

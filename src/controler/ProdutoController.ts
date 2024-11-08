@@ -11,9 +11,9 @@ export class ProdutoController {
 
     async criarProduto(req: Request, res: Response): Promise<Response> {
         try {
-            const { nome, marca, modelo, tamanho, valorUnitario } = req.body; 
+            const { nome, marca, modelo, tamanho, valorUnitario, estoqueId } = req.body; 
             const produto = new Produto(nome, marca, modelo, tamanho, valorUnitario);
-            const novoProduto = await this.produtoService.criarProduto(produto);
+            const novoProduto = await this.produtoService.criarProduto(produto, estoqueId);
             return res.status(201).json({message: `Produto criado com sucesso`, novoProduto});
         } catch (error) {
             return res.status(400).json({ message: "Erro ao criar produto.", error: error.message });
@@ -33,7 +33,7 @@ export class ProdutoController {
         try {  
             const id = parseInt(req.params.id);
             const produtosAtualizados = req.body;
-            await this.produtoService.editarUsuario(id, produtosAtualizados);
+            await this.produtoService.editarProduto(id, produtosAtualizados);
             return res.status(200).json({ message: `Produto com ID ${id} atualizado com sucesso.`, produtosAtualizados});
         } catch (error) {
             return res.status(400).json({ message: "Erro ao atuzalizar produto.", error: error.message});

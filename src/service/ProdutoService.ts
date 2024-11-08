@@ -17,7 +17,7 @@ export class ProdutoService{
         if (!estoque) {
             throw new Error("Estoque não encontrado")
         }
-
+ 
         produto.estoque = estoque;
         
         return await this.produtoRepository.criarProduto(produto);
@@ -27,7 +27,7 @@ export class ProdutoService{
         return await this.produtoRepository.listarProduto();
     }
 
-    async editarUsuario(id: number, produtoAtualizado: Partial<Produto>): Promise<Produto | null> {
+    async editarProduto(id: number, produtoAtualizado: Partial<Produto>): Promise<Produto | null> {
         return await this.produtoRepository.editarProduto(id, produtoAtualizado);
     }
 

@@ -11,9 +11,9 @@ export class EstoqueController {
 
     async criarEstoque(req: Request, res: Response): Promise<Response> {
         try {
-            const { quantidadeEmEstoque} = req.body;
+            const { produtoId,quantidadeEmEstoque} = req.body;
             const estoque = new Estoque(quantidadeEmEstoque);
-            const novoEstoque = await this.estoqueService.criarEstoque(estoque);
+            const novoEstoque = await this.estoqueService.criarEstoque(estoque, produtoId);
             return res.status(201).json({message: "Estoque criado com sucesso", novoEstoque});
         } catch (error) {
             return res.status(400).json({ message: "Erro ao criar estoque.", error: error.message });

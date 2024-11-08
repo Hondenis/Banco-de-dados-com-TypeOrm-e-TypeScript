@@ -1,6 +1,7 @@
 import { CarrinhoCompras } from "../entity/CarrinhoCompras";
 import { CarrinhoComprasRepository } from "../repository/CarrinhoComprasRepository";
 import { Produto } from "../entity/Produto";
+import { Usuario } from "../entity/Usuario";
 
 export class CarrinhoComprasService {
     private carrinhoRepository: CarrinhoComprasRepository;
@@ -15,7 +16,7 @@ export class CarrinhoComprasService {
 
         if (!carrinhoAtivo) {
             carrinhoAtivo = new CarrinhoCompras();
-            carrinhoAtivo.usuario = { id: usuarioId } as any; 
+            carrinhoAtivo.usuario = { id: usuarioId } as Usuario; 
             carrinhoAtivo.produto = [produto];
             carrinhoAtivo.status = "ativo";
             carrinhoAtivo.valorUnitario = produto.valorUnitario;
@@ -24,6 +25,10 @@ export class CarrinhoComprasService {
             return await this.carrinhoRepository.criarCarrinho(carrinhoAtivo);
         }
 
+        
+        if (carrinhoAtivo.status === "finalizado") {
+            throw new Error("Este carrinho já foi finalizado. Crie um novo carrinho.");
+        }
         
         carrinhoAtivo.produto.push(produto);
         carrinhoAtivo.quantidade += 1;

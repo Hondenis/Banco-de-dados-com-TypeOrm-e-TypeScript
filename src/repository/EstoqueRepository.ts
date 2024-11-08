@@ -1,6 +1,7 @@
 import { Repository } from "typeorm";
 import { AppDataSource } from "../banco";
 import { Estoque } from "../entity/Estoque";
+import { MoreThan } from "typeorm";
 
 export class EstoqueRepository {
     private repositorioEstoque: Repository<Estoque>;
@@ -37,4 +38,11 @@ export class EstoqueRepository {
     async pesquisarEstoque(id: number): Promise<Estoque | null> {
         return await this.repositorioEstoque.findOne({ where: { id } });
     }
+    async verificarEstoque(produtoId: number): Promise<boolean> {
+        const produtoEmEstoque = await this.repositorioEstoque.findOne({
+            where: { produto: { id: produtoId }, quantidadeEmEstoque: MoreThan(0) }
+        });
+        return !!produtoEmEstoque;
+    }
 }
+

@@ -37,4 +37,5 @@ export class EnderecoRepository{
     async pesquisarEndereco(id: number): Promise<Endereco | null>{
         return await this.repositorioEndereco.findOne({ where: {id}});
     }
+    
 }

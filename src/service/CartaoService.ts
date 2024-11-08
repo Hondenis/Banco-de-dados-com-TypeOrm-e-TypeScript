@@ -1,19 +1,32 @@
 import { Cartao } from "../entity/Cartao";
+import { Usuario } from "../entity/Usuario";
 import { CartaoRepository } from "../repository/CartaoRepository";
+import { UsuarioRepository } from "../repository/UsuarioRepository";
 
 export class CartaoService{
     private cartaoRepository: CartaoRepository;
+    private usuarioRepository: UsuarioRepository;
 
     constructor(){
         this.cartaoRepository = new CartaoRepository();
+        this.usuarioRepository = new UsuarioRepository();
     }
 
     async criarCartao(cartao: Cartao): Promise<Cartao>{
+        const usuario = await this.usuarioRepository.pesquisarUsuario(cartao.usuario.id);
+
+        if (!usuario) {
+            throw new Error("Usuario não encontrado.");
+        }
+
+        cartao.usuario = usuario;
+        
         return await this.cartaoRepository.criarCartao(cartao);
     }
 
     async listarCartao(): Promise<Cartao[]>{
         return await this.cartaoRepository.listarCartao();
+            relations: ["usuario"]
     }
 
     async editarCartao(id: number, cartaoAtualizado: Partial<Cartao>): Promise<Cartao | null> {
