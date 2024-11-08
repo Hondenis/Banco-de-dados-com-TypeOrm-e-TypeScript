@@ -24,7 +24,7 @@ export class Usuario extends Pessoa{
     @OneToMany(() => CarrinhoCompras, (carrinhoCompras) => carrinhoCompras.usuario)
     compras: CarrinhoCompras[];
 
-    constructor(nome?: string, email?: string, cpf?: string, carrinhoCompras?: CarrinhoCompras){
+    constructor(nome?: string, email?: string, cpf?: string){
         super(nome, email, cpf);
         
 }

@@ -29,11 +29,12 @@ export class Produto{
     @ManyToMany(() => CarrinhoCompras, (carrinhoCompras) => carrinhoCompras.produto)
     carrinhoCompras: CarrinhoCompras[];
 
-    constructor(nome?: string, marca?: string, modelo?: string, tamanho?: number){
+    constructor(nome?: string, marca?: string, modelo?: string, tamanho?: number, valorUnitario?: string){
         this.nome = nome;
         this.marca = marca;
         this.modelo = modelo;
         this.tamanho = tamanho;
+        this.valorUnitario = valorUnitario;
     }
 
 }

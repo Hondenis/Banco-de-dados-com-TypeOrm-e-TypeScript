@@ -11,8 +11,8 @@ export class ProdutoController {
 
     async criarProduto(req: Request, res: Response): Promise<Response> {
         try {
-            const { nome, marca, modelo, tamanho } = req.body; 
-            const produto = new Produto(nome, marca, modelo, tamanho);
+            const { nome, marca, modelo, tamanho, valorUnitario } = req.body; 
+            const produto = new Produto(nome, marca, modelo, tamanho, valorUnitario);
             const novoProduto = await this.produtoService.criarProduto(produto);
             return res.status(201).json({message: `Produto criado com sucesso`, novoProduto});
         } catch (error) {
@@ -44,7 +44,7 @@ export class ProdutoController {
         try {
             const id = parseInt(req.params.id);
             const produto = await this.produtoService.excluirProduto(id);
-            return res.status(204).send({ message: `Produto ${id} excluído com sucesso.`, produto});
+            return res.status(200).send({ message: `Produto ${id} removido com sucesso.`, produto});
         } catch (error) {
             return res.status(404).json({message: "Erro ao remover produto", erro: error.message });
         }

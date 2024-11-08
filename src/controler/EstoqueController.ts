@@ -44,7 +44,7 @@ export class EstoqueController {
         try {
             const id = parseInt(req.params.id);
             await this.estoqueService.excluirEstoque(id);
-            return res.status(204).send({message: `Estoque ${id} excluido com sucesso.`});
+            return res.status(200).send({message: `Estoque ${id} removido com sucesso.`});
         } catch (error) {
             return res.status(404).json({ message: "Erro ao excluir estoque.", error: error.message });
         }

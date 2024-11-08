@@ -6,9 +6,9 @@ const usuarioController = new UsuarioController();
 
 router.post('/criar', (req, res) => {usuarioController.criarUsuario(req, res)});
 router.put('/:id', (req, res) => {usuarioController.editarUsuario(req, res)});
-router.delete('/', (req, res) => {usuarioController.excluirUsuario(req, res)});
+router.delete('/:id', (req, res) => {usuarioController.excluirUsuario(req, res)});
 router.get('/listar', (req, res) => {usuarioController.listarUsuario(req, res)});
-router.get('/pesquisar', (req, res) => {usuarioController.pesquisarUsuario(req, res)});
+router.get('/:id', (req, res) => {usuarioController.pesquisarUsuario(req, res)});
 
 
 export default router;

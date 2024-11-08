@@ -1,4 +1,4 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinTable, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Produto } from "./Produto";
 
 @Entity()
@@ -11,6 +11,7 @@ export class Estoque{
     quantidadeEmEstoque: number;
 
     @OneToMany(() => Produto, (produto) => produto.estoque)
+    @JoinTable()
     produto: Produto[];
 
     constructor(quantidadeEmEstoque?: number){
