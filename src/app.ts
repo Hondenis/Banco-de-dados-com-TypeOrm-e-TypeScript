@@ -13,7 +13,7 @@ const app = express()
 app.use(express.json());
 
 app.get('/test', (req, res) => {
-    res.send('<h1>sistema biblioteca</h1>');
+    res.send('<h1>Sistema de vendas</h1>');
 });
 
 app.use('/usuario', usuarioRouter);
