@@ -8,7 +8,6 @@ export class CarrinhoComprasRepository{
     constructor(){
         this.repositorioCarrinhoCompras = AppDataSource.getRepository(CarrinhoCompras);
     }
-
     async criarCarrinho(carrinhoCompras: CarrinhoCompras): Promise<CarrinhoCompras>{
         return await this.repositorioCarrinhoCompras.save(carrinhoCompras);
     }
